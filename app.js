@@ -15,7 +15,7 @@ app.listen(port, () => {
 
 const connector = new builder.ChatConnector()
 
-const ChangePasswordOption = 'Change Password'
+const GetUserInfo = 'Get User Info'
 const ResetPasswordOption = 'Reset Password'
 
 const bot = new builder.UniversalBot(connector, [
@@ -23,15 +23,15 @@ const bot = new builder.UniversalBot(connector, [
     builder.Prompts.choice(
       session,
       'What do you want to do today?',
-      [ChangePasswordOption, ResetPasswordOption],
+      [GetUserInfo, ResetPasswordOption],
       { listStyle: builder.ListStyle.button }
     )
   },
   (session, result) => {
     if (result.response) {
       switch (result.response.entity) {
-        case ChangePasswordOption: {
-          session.send('Implement Change Password')
+        case GetUserInfo: {
+          session.beginDialog('getUserInfo:/')
           break
         }
         case ResetPasswordOption: {
@@ -46,6 +46,9 @@ const bot = new builder.UniversalBot(connector, [
 bot.set('storage', new builder.MemoryBotStorage())
 
 bot.library(require('./dialogs/resetPassword'))
+bot.library(require('./dialogs/getUserInfo'))
+bot.library(require('./dialogs/updateUserInfo'))
+
 bot.library(require('./validators'))
 
 app.post('/api/messages', connector.listen())
