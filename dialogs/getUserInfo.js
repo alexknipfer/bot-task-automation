@@ -5,9 +5,9 @@ const users = require('../users.json')
 
 const library = new builder.Library('getUserInfo')
 
-const ChangeUsername: 'Change username'
-const ChangePassword: 'Change password'
-const ChangeEmail: 'ChangeEmail'
+const ChangeUsername = 'Change username'
+const ChangePassword = 'Change password'
+const ChangeEmail = 'ChangeEmail'
 
 library.dialog('/', [
   session => {
