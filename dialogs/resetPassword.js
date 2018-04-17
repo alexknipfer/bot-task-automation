@@ -11,9 +11,9 @@ library.dialog('/', [
       maxRetries: 2
     })
   },
-  (session, args) => {
-    session.dialogData.phoneNumber = args.response
-    session.send('The phone number you provided is: ' + args.response)
+  (session, result) => {
+    session.dialogData.phoneNumber = result.response
+    session.send('The phone number you provided is: ' + result.response)
 
     builder.Prompts.choice(session, 'Is this the correct phone number', [
       'Yes',
