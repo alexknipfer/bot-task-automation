@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "_id": "5ad5580f1611d5d7b32c2139",
+      "name": "Alex Knipfer",
+      "gender": "male",
+      "company": "Developer",
+      "email": "alexanderknipfer@gmail.com"
+    },
+    {
+      "_id": "5ad5580f1611d5d7b32c2139",
+      "name": "Berta Hammond",
+      "gender": "female",
+      "company": "REVERSUS",
+      "email": "bertahammond@reversus.com"
+    },
+    {
+      "_id": "5ad5580f49e1405dfc714a67",
+      "name": "Baker Shepard",
+      "gender": "male",
+      "company": "GENEKOM",
+      "email": "bakershepard@genekom.com"
+    },
+    {
+      "_id": "5ad5580f4e42bf0015561fac",
+      "name": "Laura King",
+      "gender": "female",
+      "company": "PORTALIS",
+      "email": "lauraking@portalis.com"
+    },
+    {
+      "_id": "5ad5580f4ec6c47ed9ec23ce",
+      "name": "Justice Combs",
+      "gender": "male",
+      "company": "QUALITERN",
+      "email": "justicecombs@qualitern.com"
+    },
+    {
+      "_id": "5ad5580f9a46889d1986c798",
+      "name": "Hardin Atkinson",
+      "gender": "male",
+      "company": "TRIPSCH",
+      "email": "hardinatkinson@tripsch.com"
+    }
+  ]
+}
