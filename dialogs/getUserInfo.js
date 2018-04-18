@@ -52,9 +52,12 @@ library.dialog('/', [
       }
       case ChangeEmail: {
         console.log('CHANGE EMAIL!')
+        session.beginDialog('updateUserInfo:email')
         break
       }
     }
+
+    console.log('DONE WITH GET USER INFO DIALOG!!!')
   }
 ])
 
