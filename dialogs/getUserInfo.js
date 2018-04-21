@@ -1,63 +1,39 @@
 const builder = require('botbuilder')
-const jsonQuery = require('json-query')
-
-const users = require('../users.json')
 
 const library = new builder.Library('getUserInfo')
-
-const ChangeUsername = 'Change username'
-const ChangePassword = 'Change password'
-const ChangeEmail = 'ChangeEmail'
 
 library.dialog('/', [
   session => {
     session.beginDialog('validators:email', {
-      promptText: 'Enter the email for the user you are looking for:',
-      retryPromptText: 'The email you entered is not valid, please try again.',
-      maxRetries: 2
+      promptText: 'Enter the users email:'
     })
   },
   (session, result) => {
-    const selectedEmail = result.response
+    const email = result.response
 
-    const foundUsers = jsonQuery(`users[**][*email=${selectedEmail}]`, {
-      data: users
-    }).value
+    session.dialogData.email = email
 
-    const user = foundUsers[0]
-
-    session.conversationData.selectedUser = user
-
-    const promptMessage = `I found a user with that email, his name is ${
-      user.name
-    }, what would you like to do with this user?`
-
-    builder.Prompts.choice(session, promptMessage, [
-      ChangeUsername,
-      ChangePassword,
-      ChangeEmail
-    ])
+    builder.Prompts.text(session, 'Enter the users first name:')
   },
   (session, result) => {
-    const { entity } = result.response
+    const firstName = result.response
 
-    switch (entity) {
-      case ChangeUsername: {
-        console.log('CHANGE USERNAME!')
-        break
-      }
-      case ChangePassword: {
-        console.log('CHANGE PASSWORD!')
-        break
-      }
-      case ChangeEmail: {
-        console.log('CHANGE EMAIL!')
-        session.beginDialog('updateUserInfo:email')
-        break
-      }
+    session.dialogData.firstName = result.response
+
+    builder.Prompts.text(session, 'Enter the users last name:')
+  },
+  (session, result) => {
+    const lastName = result.response
+
+    const { email, firstName } = session.dialogData
+
+    const userInfo = {
+      email,
+      firstName,
+      lastName
     }
 
-    console.log('DONE WITH GET USER INFO DIALOG!!!')
+    session.endDialogWithResult({ response: userInfo })
   }
 ])
 
